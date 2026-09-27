@@ -1,0 +1,424 @@
+/* MahaCollege real CAP cutoff dataset
+   Academic year: 2026-27
+   Source: Maharashtra State CET Cell CAP Round-IV MH Cut Off PDF.
+   Percentiles are the values in parentheses in the official PDF.
+   "H/O" identifies Home-University / Other-than-Home-University seat pools.
+*/
+const COLLEGES = [
+  {
+    id:"03175", name:"M.G.M.'s College of Engineering and Technology", shortName:"MGM College of Engineering & Technology",
+    city:"Navi Mumbai", region:"Mumbai", district:"Raigad", status:"Un-Aided", university:"Mumbai University",
+    branches:["Civil Engineering","Computer Engineering","Information Technology","Electrical Engineering","Electronics and Telecommunication Engg","Bio Medical Engineering","Chemical Engineering","Mechanical Engineering","Computer Science and Engineering (AI & ML)","Computer Science and Engineering (Data Science)","Automation and Robotics"],
+    cutoffs:[
+      ["Civil Engineering","OPEN","H",78.8724264],["Civil Engineering","SEBC","H",79.3794141],["Civil Engineering","OPEN","O",81.9381769],["Civil Engineering","NT-C","O",73.6760290],["Civil Engineering","OBC","O",71.4864246],
+      ["Computer Engineering","OPEN","H",86.5951005],["Computer Engineering","ST","H",86.3032893],["Computer Engineering","OBC","H",84.3396689],["Computer Engineering","SEBC","H",80.2462012],["Computer Engineering","SC","H",86.5649710],["Computer Engineering","OPEN","O",85.2393570],["Computer Engineering","ST","O",83.7431799],["Computer Engineering","SEBC","O",83.4251983],["Computer Engineering","NT-A","O",80.7004831],["Computer Engineering","EWS","State",54.9986599],
+      ["Information Technology","OPEN","O",84.9389417],["Information Technology","ST","O",76.3286018],["Information Technology","NT-B","O",81.2187812],["Information Technology","OBC","O",80.1708014],["Information Technology","EWS","State",41.7943409],
+      ["Electrical Engineering","OPEN","H",82.5741649],["Electrical Engineering","SC","H",74.4163823],["Electrical Engineering","OPEN","O",80.0260591],["Electrical Engineering","SC","O",63.5901214],["Electrical Engineering","ST","O",44.5569356],["Electrical Engineering","OBC","O",23.9884494],
+      ["Electronics and Telecommunication Engg","OPEN","H",84.2076390],["Electronics and Telecommunication Engg","OBC","H",78.8724264],["Electronics and Telecommunication Engg","OPEN","O",87.8605935],["Electronics and Telecommunication Engg","ST","O",82.9247643],["Electronics and Telecommunication Engg","OBC","O",83.0532651],["Electronics and Telecommunication Engg","SEBC","O",81.9221888],["Electronics and Telecommunication Engg","EWS","State",60.6803919],
+      ["Bio Medical Engineering","OPEN","H",85.3954204],["Bio Medical Engineering","OPEN","O",81.7199000],["Bio Medical Engineering","EWS","State",39.9385666],
+      ["Chemical Engineering","OPEN","H",90.8237951],["Chemical Engineering","SC","H",82.9464759],["Chemical Engineering","SEBC","H",68.6031011],["Chemical Engineering","OPEN","O",74.7351841],["Chemical Engineering","ST","O",64.1499185],["Chemical Engineering","SEBC","O",74.0786749],["Chemical Engineering","EWS","State",17.2001270],
+      ["Mechanical Engineering","OPEN","H",83.7696520],["Mechanical Engineering","OPEN","O",78.9492107],["Mechanical Engineering","OBC","O",78.9492107],
+      ["Computer Science and Engineering (AI & ML)","SC","H",81.2737812],["Computer Science and Engineering (AI & ML)","OPEN","H",86.5649710],["Computer Science and Engineering (AI & ML)","OBC","H",85.0307561],["Computer Science and Engineering (AI & ML)","OPEN","O",81.2524249],["Computer Science and Engineering (AI & ML)","ST","O",76.0995880],["Computer Science and Engineering (AI & ML)","NT-C","O",80.1708014],["Computer Science and Engineering (AI & ML)","OBC","O",76.6993653],["Computer Science and Engineering (AI & ML)","SEBC","O",80.2313072],["Computer Science and Engineering (AI & ML)","EWS","State",78.9492107],
+      ["Computer Science and Engineering (Data Science)","OPEN","H",86.0314842],["Computer Science and Engineering (Data Science)","OPEN","O",80.5595655],["Computer Science and Engineering (Data Science)","ST","H",16.8210201],["Computer Science and Engineering (Data Science)","EWS","State",65.3107562],
+      ["Automation and Robotics","OPEN","H",80.7815700],["Automation and Robotics","OBC","H",79.7046663],["Automation and Robotics","SEBC","H",73.5651108],["Automation and Robotics","OPEN","O",67.9313770]
+    ]
+  },
+  {
+    id:"03182", name:"Thadomal Shahani Engineering College", shortName:"TSEC Mumbai",
+    city:"Mumbai", region:"Mumbai", district:"Mumbai", status:"Un-Aided Minority", university:"Mumbai University",
+    branches:["Computer Engineering","Information Technology","Electronics and Telecommunication Engg","Chemical Engineering"],
+    cutoffs:[
+      ["Computer Engineering","OPEN","H",99.1425468],["Computer Engineering","OPEN","O",98.3761272],
+      ["Information Technology","OPEN","H",99.0970568],["Information Technology","OPEN","O",98.0818957],
+      ["Electronics and Telecommunication Engg","OPEN","H",98.7772214],["Electronics and Telecommunication Engg","TFWS","State",98.3867855],
+      ["Chemical Engineering","OPEN","O",95.7805094]
+    ]
+  },
+  {
+    id:"03154", name:"Saraswati Education Society's Saraswati College of Engineering", shortName:"Saraswati College of Engineering, Kharghar",
+    city:"Navi Mumbai", region:"Mumbai", district:"Raigad", status:"Un-Aided Autonomous", university:"Mumbai University",
+    branches:["Civil Engineering","Computer Engineering","Information Technology","Mechanical Engineering","Computer Science and Engineering (AI & ML)","Computer Science and Engineering (Data Science)"],
+    cutoffs:[
+      ["Civil Engineering","OPEN","State",76.7952218],["Civil Engineering","ST","State",65.2933256],["Civil Engineering","VJ/DT","State",66.5942029],["Civil Engineering","OBC","State",77.1955616],["Civil Engineering","EWS","State",62.5282864],
+      ["Computer Engineering","OPEN","State",88.8293119],["Computer Engineering","SC","State",87.6160033],["Computer Engineering","ST","State",86.6676057],["Computer Engineering","OBC","State",66.1169676],["Computer Engineering","EWS","State",88.2583444],
+      ["Information Technology","OPEN","State",86.6676057],["Information Technology","ST","State",84.0342981],["Information Technology","OBC","State",85.9425358],["Information Technology","EWS","State",86.6676057],
+      ["Mechanical Engineering","ST","State",75.6280193],["Mechanical Engineering","SEBC","State",85.0803043],
+      ["Computer Science and Engineering (AI & ML)","OPEN","State",88.8632429],["Computer Science and Engineering (AI & ML)","SC","State",84.3786315],["Computer Science and Engineering (AI & ML)","ST","State",78.9492107],["Computer Science and Engineering (AI & ML)","NT-C","State",87.1731352],["Computer Science and Engineering (AI & ML)","OBC","State",87.1731352]
+    ]
+  },
+  {
+    id:"03176", name:"Thakur College of Engineering and Technology", shortName:"TCET Mumbai",
+    city:"Mumbai", region:"Mumbai", district:"Mumbai", status:"Un-Aided Autonomous Minority", university:"Autonomous Institute",
+    branches:["Computer Science and Engineering (Cyber Security)","Computer Engineering","Information Technology","AI & Data Science"],
+    cutoffs:[
+      ["Computer Science and Engineering (Cyber Security)","OPEN","State",95.5320057],["Computer Science and Engineering (Cyber Security)","OPEN-Ladies","State",95.7030198],["Computer Science and Engineering (Cyber Security)","MI","State",93.1691360],["Computer Science and Engineering (Cyber Security)","TFWS","State",97.1898440]
+    ]
+  },
+  {
+    id:"03139", name:"Vidyalankar Institute of Technology", shortName:"VIT Wadala",
+    city:"Mumbai", region:"Mumbai", district:"Mumbai", status:"Un-Aided Autonomous", university:"Autonomous Institute",
+    branches:["Computer Engineering","Electronics and Computer Science"],
+    cutoffs:[
+      ["Computer Engineering","OPEN","State",null],["Electronics and Computer Science","OPEN","State",null]
+    ]
+  },
+  {
+    id:"03146", name:"Jawahar Education Society's Annasaheb Chudaman Patil College of Engineering", shortName:"ACP Kharghar",
+    city:"Kharghar, Navi Mumbai", region:"Mumbai", district:"Raigad", status:"Un-Aided", university:"Mumbai University",
+    branches:["Computer Engineering","Electrical Engineering","Mechanical Engineering","Artificial Intelligence and Data Science"],
+    cutoffs:[]
+  },
+  {
+    id:"03012", name:"Veermata Jijabai Technological Institute (VJTI)", shortName:"VJTI Mumbai",
+    city:"Matunga, Mumbai", region:"Mumbai", district:"Mumbai", status:"Government-Aided Autonomous", university:"Autonomous Institute",
+    branches:["Civil Engineering","Information Technology","Electronics Engineering"],
+    cutoffs:[
+      ["Civil Engineering","OPEN-Ladies","State",98.4399761],["Civil Engineering","OBC-Ladies","State",97.3413057]
+    ]
+  },
+  {
+    id:"06175", name:"Pimpri Chinchwad College of Engineering, Pune", shortName:"PCCOE Pune",
+    city:"Pimpri-Chinchwad, Pune", region:"Pune", district:"Pune", status:"Un-Aided Autonomous", university:"Autonomous Institute",
+    branches:["Civil Engineering","Information Technology","Computer Engineering","Electronics and Telecommunication"],
+    cutoffs:[
+      ["Civil Engineering","OPEN","State",97.2067626],["Civil Engineering","OBC","State",97.2027972],["Civil Engineering","OPEN-Ladies","State",96.4449717],["Civil Engineering","OBC-Ladies","State",95.5792202],["Civil Engineering","EWS","State",91.7989964]
+    ]
+  },
+  {
+    id:"01012", name:"Government College of Engineering, Yavatmal", shortName:"GCOEY Yavatmal",
+    city:"Yavatmal", region:"Other Maharashtra", district:"Yavatmal", status:"Government", university:"Sant Gadge Baba Amravati University",
+    branches:["Civil Engineering","Computer Engineering","Electrical Engineering","Electronics and Telecommunication Engg","Mechanical Engineering"],
+    cutoffs:[
+      ["Civil Engineering","OPEN","H",68.7873300],["Civil Engineering","SC","H",61.9398096],["Civil Engineering","OBC","H",66.5496835],["Civil Engineering","OPEN","O",81.9137967],["Civil Engineering","SC","O",77.9379780],["Civil Engineering","OBC","O",80.0260591],
+      ["Computer Engineering","OPEN","H",91.4174744],["Computer Engineering","SC","H",81.6705255],["Computer Engineering","OBC","H",80.7815700],["Computer Engineering","SEBC","H",60.5118338],["Computer Engineering","OPEN","O",89.5593612],["Computer Engineering","SC","O",83.9283276],["Computer Engineering","ST","O",83.8560469]
+    ]
+  },
+  {
+    id:"01101", name:"Shri Sant Gajanan Maharaj College of Engineering, Shegaon", shortName:"SSGMCE Shegaon",
+    city:"Shegaon", region:"Other Maharashtra", district:"Buldhana", status:"Un-Aided Autonomous", university:"Autonomous Institute",
+    branches:["Computer Science and Engineering","Information Technology","Electrical Engineering (Electronics and Power)","Electronics and Telecommunication Engg","Mechanical Engineering"],
+    cutoffs:[
+      ["Computer Science and Engineering","OPEN","State",99.0382766],["Computer Science and Engineering","SC","State",90.1262916],["Computer Science and Engineering","OBC","State",96.1132250],["Computer Science and Engineering","OPEN-Ladies","State",87.7370373],
+      ["Electronics and Telecommunication Engg","OPEN","State",96.3008972],["Electronics and Telecommunication Engg","SC","State",86.2729883],
+      ["Mechanical Engineering","OPEN","State",88.2909271]
+    ]
+  }
+  {
+    id:'01002', name:'Government College of Engineering, Amravati', shortName:'GCOEA Amravati',
+    city:'Amravati', region:'Other Maharashtra', district:'Amravati', status:'Government Autonomous', university:'Autonomous Institute',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'01005', name:'Sant Gadge Baba Amravati University, Amravati', shortName:'SGBAU Amravati',
+    city:'Amravati', region:'Other Maharashtra', district:'Amravati', status:'University Department', university:'Sant Gadge Baba Amravati University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'01105', name:'Prof. Ram Meghe Institute of Technology & Research, Amravati', shortName:'PRMIT&R Amravati',
+    city:'Amravati', region:'Other Maharashtra', district:'Amravati', status:'Un-Aided Autonomous', university:'Sant Gadge Baba Amravati University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'01107', name:'P. R. Pote Patil College of Engineering & Management, Amravati', shortName:'PRPCEM Amravati',
+    city:'Amravati', region:'Other Maharashtra', district:'Amravati', status:'Un-Aided', university:'Sant Gadge Baba Amravati University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'01114', name:'Sipna Shikshan Prasarak Mandal College of Engineering & Technology, Amravati', shortName:'Sipna COET Amravati',
+    city:'Amravati', region:'Other Maharashtra', district:'Amravati', status:'Un-Aided Autonomous', university:'Sant Gadge Baba Amravati University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'01116', name:"Shri Shivaji Education Society's College of Engineering and Technology, Akola", shortName:'SSCE Akola',
+    city:'Akola', region:'Other Maharashtra', district:'Akola', status:'Un-Aided', university:'Sant Gadge Baba Amravati University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'01117', name:'Babasaheb Naik College Of Engineering, Pusad', shortName:'BNCOE Pusad',
+    city:'Pusad', region:'Other Maharashtra', district:'Yavatmal', status:'Un-Aided', university:'Sant Gadge Baba Amravati University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'01120', name:'Jawaharlal Darda Institute of Engineering and Technology, Yavatmal', shortName:'JDIET Yavatmal',
+    city:'Yavatmal', region:'Other Maharashtra', district:'Yavatmal', status:'Un-Aided', university:'Sant Gadge Baba Amravati University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'02008', name:'Government College of Engineering, Chhatrapati Sambhajinagar', shortName:'GCOE Chhatrapati Sambhajinagar',
+    city:'Chhatrapati Sambhajinagar', region:'Marathwada', district:'Chhatrapati Sambhajinagar', status:'Government Autonomous', university:'Autonomous Institute',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'02015', name:'Puranmal Lahoti Government Institute of Engineering and Technology, Latur', shortName:'PLGIET Latur',
+    city:'Latur', region:'Marathwada', district:'Latur', status:'Government', university:'Dr. Babasaheb Ambedkar Technological University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'02020', name:'Shri Guru Gobind Singhji Institute of Engineering and Technology, Nanded', shortName:'SGGSIET Nanded',
+    city:'Nanded', region:'Marathwada', district:'Nanded', status:'Government Autonomous', university:'Autonomous Institute',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'02113', name:"G. S. Mandal's Maharashtra Institute of Technology, Aurangabad", shortName:'MIT Aurangabad',
+    city:'Chhatrapati Sambhajinagar', region:'Marathwada', district:'Chhatrapati Sambhajinagar', status:'Un-Aided', university:'Dr. Babasaheb Ambedkar Technological University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'02114', name:'Deogiri Institute of Engineering and Management Studies, Aurangabad', shortName:'DIEMS Aurangabad',
+    city:'Chhatrapati Sambhajinagar', region:'Marathwada', district:'Chhatrapati Sambhajinagar', status:'Un-Aided', university:'Dr. Babasaheb Ambedkar Technological University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'02127', name:'Mahatma Gandhi Missions College of Engineering, Nanded', shortName:'MGMCOE Nanded',
+    city:'Nanded', region:'Marathwada', district:'Nanded', status:'Un-Aided', university:'Dr. Babasaheb Ambedkar Technological University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'02129', name:'M.S. Bidve Engineering College, Latur', shortName:'MSBE Latur',
+    city:'Latur', region:'Marathwada', district:'Latur', status:'Un-Aided', university:'Dr. Babasaheb Ambedkar Technological University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'02130', name:"Terna Public Charitable Trust's College of Engineering, Osmanabad", shortName:'Terna COE Osmanabad',
+    city:'Osmanabad', region:'Marathwada', district:'Dharashiv', status:'Un-Aided', university:'Dr. Babasaheb Ambedkar Technological University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'02131', name:'Shree Tuljabhavani College of Engineering, Tuljapur', shortName:'STBCOE Tuljapur',
+    city:'Tuljapur', region:'Marathwada', district:'Dharashiv', status:'Un-Aided', university:'Dr. Babasaheb Ambedkar Technological University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'02533', name:'CSMSS Chh. Shahu College of Engineering, Aurangabad', shortName:'CSMSS COE',
+    city:'Chhatrapati Sambhajinagar', region:'Marathwada', district:'Chhatrapati Sambhajinagar', status:'Un-Aided', university:'Dr. Babasaheb Ambedkar Technological University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03014', name:'Sardar Patel College of Engineering, Andheri', shortName:'SPCE Mumbai',
+    city:'Mumbai', region:'Mumbai', district:'Mumbai', status:'Government-Aided Autonomous', university:'Autonomous Institute',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03033', name:'Dr. Babasaheb Ambedkar Technological University, Lonere', shortName:'DBATU Lonere',
+    city:'Lonere', region:'Mumbai', district:'Raigad', status:'Government University', university:'Dr. Babasaheb Ambedkar Technological University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03036', name:'Institute of Chemical Technology, Matunga, Mumbai', shortName:'ICT Mumbai',
+    city:'Mumbai', region:'Mumbai', district:'Mumbai', status:'Government-Aided Deemed University', university:'Autonomous Institute',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03042', name:'Loknete Shamrao Peje Government College of Engineering, Ratnagiri', shortName:'LSPGCOE Ratnagiri',
+    city:'Ratnagiri', region:'Mumbai', district:'Ratnagiri', status:'Government', university:'Dr. Babasaheb Ambedkar Technological University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03135', name:"Manjara Charitable Trust's Rajiv Gandhi Institute of Technology, Mumbai", shortName:'RGIT Mumbai',
+    city:'Mumbai', region:'Mumbai', district:'Mumbai', status:'Un-Aided', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03147', name:'Yadavrao Tasgaonkar Institute of Engineering & Technology, Karjat', shortName:'YTIET Karjat',
+    city:'Karjat', region:'Mumbai', district:'Raigad', status:'Un-Aided', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03148', name:"Mahavir Education Trust's Shah & Anchor Kutchhi Engineering College, Mumbai", shortName:'SAKEC Mumbai',
+    city:'Mumbai', region:'Mumbai', district:'Mumbai', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03183', name:"Anjuman-I-Islam's M.H. Saboo Siddik College of Engineering, Byculla, Mumbai", shortName:'M.H. Saboo Siddik COE',
+    city:'Mumbai', region:'Mumbai', district:'Mumbai', status:'Un-Aided', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03184', name:'Fr. Conceicao Rodrigues College of Engineering, Bandra, Mumbai', shortName:'CRCE Mumbai',
+    city:'Mumbai', region:'Mumbai', district:'Mumbai', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03185', name:"Vivekanand Education Society's Institute of Technology, Chembur, Mumbai", shortName:'VESIT Mumbai',
+    city:'Mumbai', region:'Mumbai', district:'Mumbai', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03187', name:"N.Y.S.S.'s Datta Meghe College of Engineering, Airoli, Navi Mumbai", shortName:'DMCE Airoli',
+    city:'Navi Mumbai', region:'Mumbai', district:'Thane', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03189', name:'Bharati Vidyapeeth College of Engineering, Navi Mumbai', shortName:'BVCOE Navi Mumbai',
+    city:'Navi Mumbai', region:'Mumbai', district:'Navi Mumbai', status:'Un-Aided', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03190', name:'Terna Engineering College, Nerul, Navi Mumbai', shortName:'Terna Engineering College',
+    city:'Navi Mumbai', region:'Mumbai', district:'Thane', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03194', name:"Vidyavardhini's College of Engineering and Technology, Vasai", shortName:'VCET Vasai',
+    city:'Vasai', region:'Mumbai', district:'Palghar', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03196', name:'Lokmanya Tilak College of Engineering, Kopar Khairane, Navi Mumbai', shortName:'LTCE Navi Mumbai',
+    city:'Navi Mumbai', region:'Mumbai', district:'Thane', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03197', name:"Agnel Charities' Fr. C. Rodrigues Institute of Technology, Vashi, Navi Mumbai", shortName:'FRCRCE Vashi',
+    city:'Navi Mumbai', region:'Mumbai', district:'Navi Mumbai', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03198', name:'Konkan Gyanpeeth College of Engineering, Karjat', shortName:'KGCE Karjat',
+    city:'Karjat', region:'Mumbai', district:'Raigad', status:'Un-Aided', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03199', name:'Dwarkadas J. Sanghvi College of Engineering, Vile Parle, Mumbai', shortName:'DJ Sanghvi Mumbai',
+    city:'Mumbai', region:'Mumbai', district:'Mumbai', status:'Un-Aided Autonomous', university:'Autonomous Institute',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03201', name:'Rizvi College of Engineering, Bandra, Mumbai', shortName:'Rizvi COE Mumbai',
+    city:'Mumbai', region:'Mumbai', district:'Mumbai', status:'Un-Aided', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03203', name:'Atharva College of Engineering, Malad West, Mumbai', shortName:'Atharva COE Mumbai',
+    city:'Mumbai', region:'Mumbai', district:'Mumbai', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03204', name:'St. Francis Institute of Technology, Borivali, Mumbai', shortName:'SFIT Mumbai',
+    city:'Mumbai', region:'Mumbai', district:'Mumbai', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03208', name:'Don Bosco Institute of Technology, Mumbai', shortName:'DBIT Mumbai',
+    city:'Mumbai', region:'Mumbai', district:'Mumbai', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03209', name:'K J Somaiya Institute of Technology', shortName:'KJSIT Mumbai',
+    city:'Mumbai', region:'Mumbai', district:'Mumbai', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03211', name:'S.I.E.S. Graduate School of Technology, Nerul, Navi Mumbai', shortName:'SIES GST Navi Mumbai',
+    city:'Navi Mumbai', region:'Mumbai', district:'Thane', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03215', name:"Bhartiya Vidya Bhavan's Sardar Patel Institute of Technology, Andheri, Mumbai", shortName:'SPIT Mumbai',
+    city:'Mumbai', region:'Mumbai', district:'Mumbai', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03218', name:'St. John College of Engineering & Management, Palghar', shortName:'St John COE Palghar',
+    city:'Palghar', region:'Mumbai', district:'Palghar', status:'Un-Aided', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03221', name:'VIVA Institute of Technology, Virar', shortName:'VIVA Institute Virar',
+    city:'Virar', region:'Mumbai', district:'Palghar', status:'Un-Aided', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03223', name:'Pillai HOC College of Engineering & Technology, Khalapur', shortName:'Pillai HOC Khalapur',
+    city:'Khalapur', region:'Mumbai', district:'Raigad', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03257', name:"Vidya Prasarak Mandal's College of Engineering, Thane", shortName:'VPM COE Thane',
+    city:'Thane', region:'Mumbai', district:'Thane', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03475', name:'A. P. Shah Institute of Technology, Thane', shortName:'APSIT Thane',
+    city:'Thane', region:'Mumbai', district:'Thane', status:'Un-Aided Autonomous', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'03477', name:'Chhatrapati Shivaji Maharaj Institute of Technology, Shedung, Panvel', shortName:'CSMIT Panvel',
+    city:'Panvel', region:'Mumbai', district:'Raigad', status:'Un-Aided', university:'Mumbai University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'04004', name:'Government College of Engineering, Chandrapur', shortName:'GCOEC Chandrapur',
+    city:'Chandrapur', region:'Vidarbha', district:'Chandrapur', status:'Government', university:'Gondwana University',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'04025', name:'Government College of Engineering, Nagpur', shortName:'GCOEN Nagpur',
+    city:'Nagpur', region:'Vidarbha', district:'Nagpur', status:'Government', university:'Autonomous Institute',
+    branches:[],
+    cutoffs:[]
+  },
+  {
+    id:'04116', name:'G.H. Raisoni College of Engineering, Nagpur', shortName:'GHRCE Nagpur',
+    city:'Nagpur', region:'Vidarbha', district:'Nagpur', status:'Un-Aided Autonomous', university:'Autonomous Institute',
+    branches:[],
+    cutoffs:[]
+  },
+
+];
+
+const CUTOFF_YEAR = 2026;
+const CUTOFF_ROUND = "CAP Round IV";
+const DATA_SOURCE = "Maharashtra State CET Cell — CAP Round IV MH Cut Off, A.Y. 2026-27";
+const DIRECTORY_SOURCE = "Maharashtra State CET Cell — Institute-Wise Allotment List, A.Y. 2026-27";

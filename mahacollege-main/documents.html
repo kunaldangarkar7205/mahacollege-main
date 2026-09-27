@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Documents Required - MahaCollege</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .documents-page {
+            max-width: 1000px;
+
+            margin: 50px auto;
+
+            padding: 20px;
+        }
+
+        .category-select {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            margin-bottom: 25px;
+        }
+
+        .category-select select {
+            width: 100%;
+
+            padding: 13px;
+
+            margin-top: 10px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 7px;
+        }
+
+        .documents-box {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+        }
+
+        .document-item {
+            padding: 15px;
+
+            margin-bottom: 10px;
+
+            background: #f5f7fb;
+
+            border-radius: 8px;
+        }
+
+    </style>
+
+</head>
+
+<body id="auth-protected-page">
+
+<nav>
+
+    <div class="logo">🎓 MahaCollege</div>
+
+    <div class="menu">
+
+        <a href="index.html">Home</a>
+        <a href="find-colleges.html">Colleges</a>
+        <a href="category-cutoffs.html">Cutoffs</a>
+        <a href="college-predictor.html">Predictor</a>
+        <a href="compare-colleges.html">Compare</a>
+        <a href="notifications.html">Notifications</a>
+
+    </div>
+
+</nav>
+
+
+<div class="documents-page">
+
+
+    <div class="section-title">
+
+        <h2>📄 Documents Required</h2>
+
+        <p>
+            Select your category to see applicable admission documents.
+        </p>
+
+    </div>
+
+
+    <div class="category-select">
+
+        <label>
+            <strong>Select Your Category</strong>
+        </label>
+
+
+        <select id="category"
+                onchange="showDocuments()">
+
+            <option value="">Select Category</option>
+
+            <option>OPEN</option>
+            <option>OBC</option>
+            <option>SC</option>
+            <option>ST</option>
+            <option>EWS</option>
+            <option>SEBC</option>
+            <option>VJ/DT</option>
+            <option>NT-A</option>
+            <option>NT-B</option>
+            <option>NT-C</option>
+            <option>NT-D</option>
+            <option>SBC</option>
+
+        </select>
+
+    </div>
+
+
+    <div class="documents-box"
+         id="documentsBox">
+
+        <h3>General Documents</h3>
+
+        <br>
+
+        <div class="document-item">
+            ✓ SSC / 10th Marksheet
+        </div>
+
+        <div class="document-item">
+            ✓ HSC / Diploma Marksheet
+        </div>
+
+        <div class="document-item">
+            ✓ MHT-CET Scorecard
+        </div>
+
+        <div class="document-item">
+            ✓ Identity Proof
+        </div>
+
+        <div class="document-item">
+            ✓ Passport Size Photographs
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function showDocuments() {
+
+    let category =
+        document.getElementById("category").value;
+
+
+    let extra = "";
+
+
+    if (
+        category === "OBC" ||
+        category === "VJ/DT" ||
+        category === "NT-A" ||
+        category === "NT-B" ||
+        category === "NT-C" ||
+        category === "NT-D" ||
+        category === "SBC"
+    ) {
+
+        extra = `
+
+            <div class="document-item">
+                ✓ Applicable Caste Certificate
+            </div>
+
+            <div class="document-item">
+                ✓ Applicable Caste Validity Certificate
+            </div>
+
+            <div class="document-item">
+                ✓ Applicable Non-Creamy Layer Certificate
+            </div>
+
+        `;
+
+    }
+
+
+    if (
+        category === "SC" ||
+        category === "ST"
+    ) {
+
+        extra = `
+
+            <div class="document-item">
+                ✓ Caste Certificate
+            </div>
+
+            <div class="document-item">
+                ✓ Caste Validity Certificate
+            </div>
+
+        `;
+
+    }
+
+
+    if (category === "EWS") {
+
+        extra = `
+
+            <div class="document-item">
+                ✓ EWS Certificate
+            </div>
+
+        `;
+
+    }
+
+
+    if (category === "SEBC") {
+
+        extra = `
+
+            <div class="document-item">
+                ✓ Applicable SEBC Certificate
+            </div>
+
+        `;
+
+    }
+
+
+    document.getElementById("documentsBox").innerHTML = `
+
+        <h3>
+            Documents for ${category || "General Admission"}
+        </h3>
+
+        <br>
+
+        <div class="document-item">
+            ✓ SSC / 10th Marksheet
+        </div>
+
+        <div class="document-item">
+            ✓ HSC / Diploma Marksheet
+        </div>
+
+        <div class="document-item">
+            ✓ MHT-CET Scorecard
+        </div>
+
+        <div class="document-item">
+            ✓ Identity Proof
+        </div>
+
+        <div class="document-item">
+            ✓ Passport Size Photographs
+        </div>
+
+        ${extra}
+
+    `;
+
+}
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CAP Notifications - MahaCollege</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .notification-page {
+            max-width: 1000px;
+
+            margin: 50px auto;
+
+            padding: 20px;
+        }
+
+        .notification-card {
+            background: white;
+
+            padding: 25px;
+
+            margin-bottom: 15px;
+
+            border-radius: 12px;
+
+            border-left: 5px solid #2563eb;
+        }
+
+        .notification-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .notification-card p {
+            color: #666;
+
+            line-height: 1.6;
+        }
+
+        .tag {
+            display: inline-block;
+
+            margin-top: 12px;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            background: #eef6ff;
+
+            color: #2563eb;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<body id="auth-protected-page">
+
+<nav>
+
+    <div class="logo">🎓 MahaCollege</div>
+
+    <div class="menu">
+
+        <a href="index.html">Home</a>
+        <a href="find-colleges.html">Colleges</a>
+        <a href="category-cutoffs.html">Cutoffs</a>
+        <a href="college-predictor.html">Predictor</a>
+        <a href="compare-colleges.html">Compare</a>
+        <a href="notifications.html">Notifications</a>
+        <a href="login.html" class="login-btn">Login</a>
+
+    </div>
+
+</nav>
+
+
+<div class="notification-page">
+
+
+    <div class="section-title">
+
+        <h2>🔔 CAP Notifications</h2>
+
+        <p>
+            Important admission updates and CAP information.
+        </p>
+
+    </div>
+
+
+    <div class="notification-card">
+
+        <h3>CAP Registration</h3>
+
+        <p>
+            Important information related to CAP registration
+            and application process.
+        </p>
+
+        <span class="tag">
+            Admission Update
+        </span>
+
+    </div>
+
+
+    <div class="notification-card">
+
+        <h3>Merit List</h3>
+
+        <p>
+            Check updates related to provisional
+            and final merit lists.
+        </p>
+
+        <span class="tag">
+            Merit List
+        </span>
+
+    </div>
+
+
+    <div class="notification-card">
+
+        <h3>CAP Round Allotment</h3>
+
+        <p>
+            Stay informed about seat allotment
+            and CAP round updates.
+        </p>
+
+        <span class="tag">
+            CAP Round
+        </span>
+
+    </div>
+
+
+    <div class="notification-card">
+
+        <h3>Vacancy Updates</h3>
+
+        <p>
+            Important information about available
+            seats after CAP rounds.
+        </p>
+
+        <span class="tag">
+            Vacancy
+        </span>
+
+    </div>
+
+
+    <p style="margin-top:25px;">
+
+        <strong>Note:</strong>
+        This prototype currently shows sample notifications.
+        Actual updates should be connected to official CET Cell information.
+
+    </p>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="auth.js"></script>
+</body>
+</html> 

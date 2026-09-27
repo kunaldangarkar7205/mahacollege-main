@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Predictor - MahaCollege</title>
+<link rel="stylesheet" href="style.css">
+<style>
+ .predictor-page{max-width:820px;margin:40px auto;padding:24px;background:#fff}
+.predictor-page h1{text-align:center;margin:0 0 8px;color:#142b67;font-size:34px}.intro{text-align:center;color:#666;margin:0 0 30px;font-size:17px}
+.predictor-grid{display:block}.form-group{margin:0 0 20px}.form-group label{display:block;font-weight:700;margin-bottom:8px;color:#0f2b67;font-size:16px}.form-group input,.form-group select{width:100%;box-sizing:border-box;padding:13px 16px;border:1px solid #d7dce5;border-radius:8px;background:#fff;font-size:14px;min-height:44px}
+.full{margin-top:4px}.predict-btn{width:100%;padding:14px;border:0;border-radius:8px;background:#172554;color:#fff;font-size:17px;font-weight:700;cursor:pointer}.predict-btn:hover{opacity:.92}
+.round-note{padding:14px 16px;background:#eef5ff;border-radius:10px;margin:24px 0 14px}.round-note a{margin-left:8px;color:#1d4ed8;font-weight:700}
+.count{font-weight:700;margin:18px 0 12px;color:#172554}.location-help{display:block;margin-top:7px;color:#64748b;font-size:13px}.result-card{padding:24px;margin:18px 0;background:#f4f6fa;border-radius:10px;border:0;border-left:4px solid #2864e6;box-shadow:none}.result-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.result-card h3{margin:0 0 8px;color:#10285f;font-size:20px}.match-badge{background:#e2efff;color:#1d4ed8;padding:6px 10px;border-radius:20px;font-weight:700;white-space:nowrap}.meta{color:#172554;margin:5px 0;font-size:14px}.direct-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.direct-details>div{background:transparent;border:0;border-radius:0;padding:0}.direct-details strong{display:block;font-size:12px;color:#475569;margin-bottom:4px;text-transform:uppercase}.direct-details span{display:block;color:#1f2937;line-height:1.45}.direct-details .wide{grid-column:1/-1}.details-btn{margin-top:16px;padding:10px 15px;border:0;border-radius:6px;background:#2864e6;color:#fff;font-size:16px;font-weight:500;cursor:pointer}.details-btn:hover{background:#1d4ed8}.detail-panel{display:none;margin-top:16px;padding:16px;background:#fff;border:1px solid #dbe3ef;border-radius:10px}.detail-panel.open{display:block}.cutoff-table{width:100%;border-collapse:collapse;margin-top:16px;background:#fff;border-radius:8px;overflow:hidden}.cutoff-table th,.cutoff-table td{border:1px solid #e5e7eb;padding:9px;text-align:center;font-size:14px}.cutoff-table th{background:#f1f5f9}.selected-round{font-weight:800;background:#e0ecff}.muted{color:#666;font-size:14px}.empty{padding:20px;background:#fff7ed;border:1px solid #fed7aa;border-radius:10px}
+@media(max-width:700px){.predictor-grid{grid-template-columns:1fr}.full{grid-column:auto}.result-head{flex-direction:column}.cutoff-table{font-size:12px}.cutoff-table th,.cutoff-table td{padding:7px}}
+</style>
+</head>
+<body id="auth-protected-page">
+<nav><div class="logo">🎓 MahaCollege</div><div class="menu"><a href="index.html">Home</a><a href="find-colleges.html">Colleges</a><a href="category-cutoffs.html">Cutoffs</a><a href="college-predictor.html">Predictor</a><a href="compare-colleges.html">Compare</a><a href="notifications.html">Notifications</a><a href="login.html" class="login-btn">Login</a></div></nav>
+<div class="predictor-page">
+<h1>🎯 College Predictor</h1>
+<p class="intro">Enter your MHT-CET percentile, category and preferences. The predictor checks the selected CAP round against the cutoff data loaded in the program.</p>
+<div class="predictor-grid">
+<div class="form-group"><label for="percentile">MHT-CET Percentile</label><input type="number" id="percentile" min="0" max="100" step="0.01" placeholder="Example: 85.50"></div>
+<div class="form-group"><label for="category">Category</label><select id="category"><option value="">Select Category</option><option>OPEN</option><option>OBC</option><option>SC</option><option>ST</option><option>EWS</option><option>SEBC</option><option>VJ/DT</option><option>NT-A</option><option>NT-B</option><option>NT-C</option><option>NT-D</option><option>SBC</option></select></div>
+<div class="form-group"><label for="branch">Preferred Branch</label><select id="branch"><option value="">Any Branch</option></select></div>
+<div class="form-group"><label for="region">College Location</label><select id="region"><option value="">Any Location</option></select><small class="location-help">Choose a city/district to see colleges from that location.</small></div>
+<div class="form-group"><label for="round">Cutoff Round to Check</label><select id="round"><option value="cap1">CAP Round 1</option><option value="cap2">CAP Round 2</option><option value="cap3">CAP Round 3</option><option value="cap4" selected>CAP Round 4</option></select></div>
+<div class="form-group full"><button class="predict-btn" onclick="predictCollege()">Find Matching Colleges</button></div>
+</div>
+<div id="results" style="margin-top:20px"></div>
+</div>
+<script src="college-data.js"></script>
+<script src="cap-cutoff-sources.js"></script>
+<script>
+const ROUND_INFO={cap1:{label:'CAP Round 1',index:6},cap2:{label:'CAP Round 2',index:5},cap3:{label:'CAP Round 3',index:4},cap4:{label:'CAP Round 4',index:3}};
+const collegeList=Array.isArray(window.COLLEGES)?window.COLLEGES:(typeof COLLEGES!=='undefined'?COLLEGES:[]);
+const branches=[...new Set(collegeList.flatMap(c=>[...(Array.isArray(c.branches)?c.branches:[]),...(Array.isArray(c.cutoffs)?c.cutoffs.map(x=>x&&x[0]).filter(Boolean):[])]))].sort((a,b)=>a.localeCompare(b));
+const locations=[...new Set(collegeList.flatMap(c=>[c.city,c.district]).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+document.getElementById('branch').innerHTML='<option value="">Any Branch</option>'+branches.map(b=>'<option value="'+escapeHtml(b)+'">'+escapeHtml(b)+'</option>').join('');
+if(!branches.length){document.getElementById('branch').innerHTML='<option value="">Any Branch</option>'; }
+document.getElementById('region').innerHTML='<option value="">Any Location</option>'+locations.map(x=>'<option value="'+escapeHtml(x)+'">'+escapeHtml(x)+'</option>').join('');
+function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+function normalizeCategory(value){
+ const v=String(value||'').trim().toUpperCase().replace(/\s+/g,' ');
+ return v.replace(/^G(?=(OPEN|SC|ST|OBC|SEBC|VJ\/DT|NT-A|NT-B|NT-C|NT-D|SBC|EWS))|^L(?=(OPEN|SC|ST|OBC|SEBC|VJ\/DT|NT-A|NT-B|NT-C|NT-D|SBC|EWS))/,'');
+}
+function categoryMatches(rowCategory,selected){
+ const r=String(rowCategory||'').trim().toUpperCase(),s=String(selected||'').trim().toUpperCase();
+ if(!s)return false;
+ if(r===s || r.startsWith(s+'-'))return true;
+ // Some official CAP labels use G/L prefixes (for example GOPENH/LOPENH).
+ const base=r.replace(/^(G|L)/,'');
+ return base===s || base.startsWith(s+'-');
+}
+function num(v){return typeof v==='number'&&Number.isFinite(v)?v:null;}
+function cutoffFor(row,key){const idx=ROUND_INFO[key].index; return idx===null||idx===undefined?null:num(row[idx]);}
+function hasCutoff(row,key){return cutoffFor(row,key)!==null;}
+function fmt(v){return v===null?'—':Number(v).toFixed(2);}
+function toggleDetails(id,button){const panel=document.getElementById(id);if(!panel)return;const open=panel.classList.toggle('open');button.textContent=open?'Hide College Details':'View College Details';}
+function predictCollege(){
+ const roundKey=document.getElementById('round').value,pct=parseFloat(document.getElementById('percentile').value),cat=document.getElementById('category').value,branch=document.getElementById('branch').value,region=document.getElementById('region').value,info=ROUND_INFO[roundKey];
+ if(isNaN(pct)||pct<0||pct>100){alert('Enter a percentile between 0 and 100.');return;}
+ if(!cat){alert('Select your category.');return;}
+ const results=[];
+ collegeList.forEach(c=>{
+   (Array.isArray(c.cutoffs)?c.cutoffs:[]).forEach(x=>{
+     if(!Array.isArray(x)||x.length<4||!categoryMatches(x[1],cat)|| (branch&&x[0]!==branch)||(region&&c.city!==region&&c.district!==region&&c.region!==region)) return;
+     const selectedCutoff=cutoffFor(x,roundKey);
+     // A blank cell in an official round means there is no cutoff for that
+     // category/seat-pool in that round. Never fall back to another round.
+     if(selectedCutoff!==null&&pct>=selectedCutoff) results.push({c,x,cutoff:selectedCutoff});
+   });
+ });
+ const unique={};
+ results.forEach(r=>{const k=r.c.id+'|'+r.x[0]+'|'+r.x[1]+'|'+r.x[2];if(!unique[k]||r.cutoff<unique[k].cutoff)unique[k]=r;});
+ const arr=Object.values(unique).sort((a,b)=>(b.cutoff-a.cutoff)||a.c.name.localeCompare(b.c.name)).slice(0,60);
+ const source=(window.MAHA_CAP_SOURCES||{})[roundKey];
+ let html='<div class="round-note"><strong>'+info.label+'</strong> selected. Your percentile: <strong>'+pct.toFixed(2)+'</strong>. '+(source?'<a target="_blank" rel="noopener" href="'+source+'">Official '+info.label+' cutoff PDF</a>':'')+'</div>';
+ if(arr.length){
+   html+='<div class="count">'+arr.length+' matching college/branch options found.</div>';
+   html+=arr.map(r=>{
+     const c1=cutoffFor(r.x,'cap1'),c2=cutoffFor(r.x,'cap2'),c3=cutoffFor(r.x,'cap3'),c4=cutoffFor(r.x,'cap4');
+     const d=r.c.details||r.c;
+     const field=(key,fallback)=>escapeHtml(d[key]||fallback);
+     const branchList=Array.isArray(r.c.branches)?r.c.branches.join(', '):'Not listed';
+     const detailId='detail-'+String(r.c.id)+'-'+String(r.x[0]).replace(/[^a-zA-Z0-9]/g,'-')+'-'+Math.random().toString(36).slice(2,7);
+     const overview=field('overview','Maharashtra engineering institute participating in the 2026–27 CET Cell admission process.');
+     return '<div class="result-card"><div class="result-head"><div><h3>'+escapeHtml(r.c.name)+'</h3><p class="meta">📍 '+escapeHtml(r.c.city||'')+' · '+escapeHtml(r.c.district||'')+' · '+escapeHtml(r.c.region||'')+'</p></div><span class="match-badge">Matches '+escapeHtml(info.label)+'</span></div><div class="direct-details"><div><strong>Branch</strong><span>'+escapeHtml(r.x[0])+'</span></div><div><strong>Category</strong><span>'+escapeHtml(r.x[1])+'</span></div><div><strong>Seat pool</strong><span>'+escapeHtml(r.x[2])+'</span></div><div><strong>Selected cutoff</strong><span>'+fmt(r.cutoff)+'</span></div></div><button class="details-btn" type="button" onclick="toggleDetails(\''+detailId+'\',this)">View College Details</button><div id="'+detailId+'" class="detail-panel"><div class="direct-details"><div><strong>University</strong><span>'+field('university',r.c.university||'Not listed')+'</span></div><div><strong>Seats / Intake</strong><span>'+field('seats','See official institute intake')+'</span></div><div><strong>Fees</strong><span>'+field('fees','See current approved fee notice')+'</span></div><div><strong>Placement</strong><span>'+field('placements','See official placement report')+'</span></div><div><strong>Accreditation</strong><span>'+field('accreditation','See current accreditation status')+'</span></div><div><strong>Campus</strong><span>'+field('campus','See official campus information')+'</span></div><div><strong>Environment</strong><span>'+field('environment','See official campus/environment information')+'</span></div><div><strong>Faculty</strong><span>'+field('faculty','See current faculty directory')+'</span></div><div><strong>Facilities</strong><span>'+field('facilities','See official facilities information')+'</span></div><div><strong>Admission</strong><span>'+field('admission','Maharashtra CET Cell CAP process')+'</span></div><div class="wide"><strong>Overview</strong><span>'+overview+'</span></div><div class="wide"><strong>All Branches</strong><span>'+escapeHtml(branchList)+'</span></div></div><table class="cutoff-table"><thead><tr><th>CAP 1</th><th>CAP 2</th><th>CAP 3</th><th>CAP 4</th></tr></thead><tbody><tr><td class="'+(roundKey==='cap1'?'selected-round':'')+'">'+fmt(c1)+'</td><td class="'+(roundKey==='cap2'?'selected-round':'')+'">'+fmt(c2)+'</td><td class="'+(roundKey==='cap3'?'selected-round':'')+'">'+fmt(c3)+'</td><td class="'+(roundKey==='cap4'?'selected-round':'')+'">'+fmt(c4)+'</td></tr></tbody></table><p class="muted">Your percentile: <strong>'+pct.toFixed(2)+'</strong> · Selected round cutoff: <strong>'+fmt(r.cutoff)+'</strong> · Margin: <strong>'+(pct-r.cutoff).toFixed(2)+'</strong> percentile points</p></div></div>';
+   }).join('');
+ } else {
+   html+='<div class="empty"><h3>No matching result in the loaded data</h3><p>There is no verified cutoff row in this project for the selected round, category, branch and region at or below your percentile. CAP 1 is shown from the official 2026–27 CAP Round 1 cutoff data loaded in this project. Try another CAP round, branch or region.</p></div>';
+ }
+ document.getElementById('results').innerHTML=html;
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="auth.js"></script>
+</body></html>

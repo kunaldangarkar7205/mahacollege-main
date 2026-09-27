@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direct CAP Cutoffs 2026-27 - MahaCollege</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.cutoff-page{padding:42px 4%}.cutoff-head{max-width:1300px;margin:0 auto 24px}.cutoff-head h2{margin-bottom:8px}.cutoff-head p{color:#64748b}.source-box{max-width:1300px;margin:18px auto;padding:14px 18px;background:#eef4ff;border-radius:10px}.source-box a{margin-right:14px}.tools{max-width:1300px;margin:18px auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.tools input{flex:1;min-width:260px;padding:12px 14px;border:1px solid #d5dbe5;border-radius:8px;font-size:15px}.count{font-weight:700;color:#172554}.table-container{max-width:1300px;margin:auto;overflow:auto;max-height:72vh;border:1px solid #dbe3ef;border-radius:10px;background:#fff}table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:10px 12px;border:1px solid #e5e7eb;text-align:left;white-space:nowrap;font-size:13px}th{background:#172554;color:#fff;position:sticky;top:0;z-index:2}.pct{text-align:center;font-weight:600}.missing{color:#94a3b8}.note{max-width:1300px;margin:16px auto;color:#64748b;font-size:13px}.round-title{font-weight:800;color:#172554}
+@media(max-width:700px){.cutoff-page{padding:25px 2%}th,td{padding:8px;font-size:12px}}
+</style>
+</head>
+<body id="auth-protected-page">
+<nav><div class="logo">🎓 MahaCollege</div><div class="menu"><a href="index.html">Home</a><a href="find-colleges.html">Colleges</a><a href="category-cutoffs.html">Cutoffs</a><a href="college-predictor.html">Predictor</a><a href="compare-colleges.html">Compare</a><a href="notifications.html">Notifications</a><a href="login.html" class="login-btn">Login</a></div></nav>
+<section class="cutoff-page">
+<div class="cutoff-head"><h2>📊 Direct CAP Cutoffs — 2026-27</h2><p>No college, branch, category, quota or other selection is required. All verified cutoff rows are shown directly below.</p></div>
+<div class="source-box"><strong>Official Maharashtra CET Cell sources:</strong> <a href="https://cappublicdocs2026.blob.core.windows.net/documents/2026ENGG_CAP1_MH_CutOff_V1.pdf" target="_blank" rel="noopener">CAP 1</a><a href="https://cappublicdocs2026.blob.core.windows.net/documents/2026ENGG_CAP2_MH_CutOff.pdf" target="_blank" rel="noopener">CAP 2</a><a href="https://cappublicdocs2026.blob.core.windows.net/documents/2026ENGG_CAP3_MH_CutOff.pdf" target="_blank" rel="noopener">CAP 3</a><a href="https://cappublicdocs2026.blob.core.windows.net/documents/2026ENGG_CAP4_MH_CutOff.pdf" target="_blank" rel="noopener">CAP 4</a></div>
+<div class="tools"><input id="search" type="search" placeholder="Optional: search college, branch, category or seat pool..."><span class="count" id="count"></span></div>
+<div class="table-container"><table><thead><tr><th>College</th><th>Branch</th><th>Category</th><th>Seat Pool</th><th>CAP 1</th><th>CAP 2</th><th>CAP 3</th><th>CAP 4</th></tr></thead><tbody id="rows"></tbody></table></div>
+<p class="note">Source: Maharashtra State CET Cell, A.Y. 2026-27. Values in this table are percentile cutoffs loaded from the official CAP Round 1, 2, 3 and 4 datasets in this project. A dash means that the corresponding round has no cutoff value for that row; no value is estimated or copied from another round.</p>
+</section>
+<script src="college-data.js"></script>
+<script>
+const allRows=COLLEGES.flatMap(c=>(Array.isArray(c.cutoffs)?c.cutoffs:[]).filter(x=>[3,4,5,6].some(i=>typeof x[i]==='number')).map(x=>({college:c.shortName||c.name,branch:x[0],category:x[1],quota:x[2],cap1:x[6],cap2:x[5],cap3:x[4],cap4:x[3]})));
+const esc=s=>String(s??'').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]));
+const pct=v=>typeof v==='number'&&!Number.isNaN(v)?v.toFixed(2):'<span class="missing">—</span>';
+function render(){
+ const q=document.getElementById('search').value.trim().toLowerCase();
+ const out=q?allRows.filter(x=>[x.college,x.branch,x.category,x.quota].some(v=>String(v).toLowerCase().includes(q))):allRows;
+ document.getElementById('count').textContent=`Showing ${out.length.toLocaleString()} of ${allRows.length.toLocaleString()} cutoff rows`;
+ document.getElementById('rows').innerHTML=out.map(x=>`<tr><td>${esc(x.college)}</td><td>${esc(x.branch)}</td><td>${esc(x.category)}</td><td>${esc(x.quota)}</td><td class="pct">${pct(x.cap1)}</td><td class="pct">${pct(x.cap2)}</td><td class="pct">${pct(x.cap3)}</td><td class="pct">${pct(x.cap4)}</td></tr>`).join('')||'<tr><td colspan="8" style="text-align:center;padding:24px">No cutoff rows found.</td></tr>';
+}
+document.getElementById('search').addEventListener('input',render);render();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="auth.js"></script>
+</body></html>
