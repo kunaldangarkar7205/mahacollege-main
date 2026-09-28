@@ -57,7 +57,7 @@ function cutoffFor(row,key){const idx=ROUND_INFO[key].index; return idx===null||
 function hasCutoff(row,key){return cutoffFor(row,key)!==null;}
 function fmt(v){return v===null?'—':Number(v).toFixed(2);}
 function toggleDetails(id,button){const panel=document.getElementById(id);if(!panel)return;const open=panel.classList.toggle('open');button.textContent=open?'Hide College Details':'View College Details';}
-function predictCollege(){
+async function predictCollege(){
  const roundKey=document.getElementById('round').value,pct=parseFloat(document.getElementById('percentile').value),cat=document.getElementById('category').value,branch=document.getElementById('branch').value,region=document.getElementById('region').value,info=ROUND_INFO[roundKey];
  if(isNaN(pct)||pct<0||pct>100){alert('Enter a percentile between 0 and 100.');return;}
  if(!cat){alert('Select your category.');return;}
@@ -91,7 +91,10 @@ function predictCollege(){
    html+='<div class="empty"><h3>No matching result in the loaded data</h3><p>There is no verified cutoff row in this project for the selected round, category, branch and region at or below your percentile. CAP 1 is shown from the official 2026–27 CAP Round 1 cutoff data loaded in this project. Try another CAP round, branch or region.</p></div>';
  }
  document.getElementById('results').innerHTML=html;
+ try {
+   await MahaAccount.addPrediction({percentile:pct.toFixed(2),category:cat,branch:branch||'Any Branch',region:region||'Any Location',round:info.label,count:arr.length});
+ } catch(e) { console.error('Prediction history could not be saved:',e); } 
 }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="auth.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="auth.js"></script><script src="account-data.js"></script>
 </body></html>

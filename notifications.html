@@ -62,6 +62,115 @@
             font-weight: bold;
         }
 
+        .notification-card {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+
+        .notification-card > div:last-child { flex: 1; }
+
+        .notice-icon {
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: #eef6ff;
+            font-size: 23px;
+        }
+
+        .notice-list {
+            margin: 14px 0 8px;
+            padding-left: 22px;
+            line-height: 1.8;
+        }
+
+        .info-grid, .round-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin: 16px 0 8px;
+        }
+
+        .round-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+        .info-grid > div, .round-grid > div {
+            padding: 14px;
+            border-radius: 10px;
+            background: #f4f7fb;
+            border: 1px solid #dce5f0;
+        }
+
+        .info-grid strong, .round-grid strong { display: block; margin-bottom: 6px; }
+        .info-grid span, .round-grid span { display: block; font-size: 14px; line-height: 1.5; color: #4b5563; }
+
+        .notice-link, .official-links a {
+            display: inline-block;
+            margin: 12px 8px 0 0;
+            padding: 9px 13px;
+            border-radius: 8px;
+            background: #2563eb;
+            color: #fff !important;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .official-links { margin-top: 4px; }
+
+        .status-box {
+            padding: 18px 20px;
+            margin: 22px 0;
+            border-left: 5px solid #2563eb;
+            border-radius: 10px;
+            background: #eef6ff;
+            color: #1e3a5f;
+            line-height: 1.6;
+        }
+
+        .notification-note { line-height: 1.7; }
+
+        body.dark-mode .notification-card {
+            background: #172033;
+            border-color: #334155;
+            color: #f8fafc;
+        }
+
+        body.dark-mode .notification-card p,
+        body.dark-mode .notification-card .info-grid span,
+        body.dark-mode .notification-card .round-grid span,
+        body.dark-mode .notification-note {
+            color: #d7e2f0;
+        }
+
+        body.dark-mode .notice-icon {
+            background: #263752;
+        }
+
+        body.dark-mode .info-grid > div,
+        body.dark-mode .round-grid > div {
+            background: #202c40;
+            border-color: #3b4b63;
+        }
+
+        body.dark-mode .status-box {
+            background: #1c3557;
+            color: #e7f0ff;
+            border-color: #4f9cff;
+        }
+
+        body.dark-mode .tag {
+            background: #203c66;
+            color: #b9d8ff;
+        }
+
+        @media (max-width: 760px) {
+            .notification-card { flex-direction: column; }
+            .info-grid, .round-grid { grid-template-columns: 1fr; }
+        }
+
     </style>
 
 </head>
@@ -89,88 +198,115 @@
 
 <div class="notification-page">
 
-
     <div class="section-title">
-
-        <h2>🔔 CAP Notifications</h2>
-
-        <p>
-            Important admission updates and CAP information.
-        </p>
-
+        <h2>🔔 CAP Admission Notifications</h2>
+        <p>Important Maharashtra engineering admission information for CAP 2026-27.</p>
     </div>
 
+    <div class="notification-card highlight-card">
+        <div class="notice-icon">📝</div>
+        <div>
+            <h3>CAP Registration</h3>
+            <p>
+                Candidates seeking first-year B.E./B.Tech admission through the Maharashtra State CET Cell CAP process
+                must complete the online application/registration, enter the required academic and candidature details,
+                upload the required documents, and complete the applicable document verification/scrutiny process.
+            </p>
+            <ul class="notice-list">
+                <li>Use the official CAP portal for registration and candidate login.</li>
+                <li>Keep MHT-CET/JEE details, marksheets, category documents and other required certificates ready.</li>
+                <li>Check the official notice for the applicable registration, confirmation and scrutiny dates.</li>
+                <li>After registration, keep your Application ID and login details safe.</li>
+            </ul>
+            <span class="tag">CAP Registration</span>
+            <a class="notice-link" href="https://fe2026.mahacet.org/" target="_blank" rel="noopener">Open B.E./B.Tech CAP Portal ↗</a>
+        </div>
+    </div>
 
     <div class="notification-card">
-
-        <h3>CAP Registration</h3>
-
-        <p>
-            Important information related to CAP registration
-            and application process.
-        </p>
-
-        <span class="tag">
-            Admission Update
-        </span>
-
+        <div class="notice-icon">📋</div>
+        <div>
+            <h3>Provisional & Final Merit List</h3>
+            <p>
+                After applications are processed and verified, the CET Cell publishes merit-list information.
+                Candidates should check their merit status on the official engineering CAP portal and follow the
+                published grievance/correction instructions when applicable.
+            </p>
+            <div class="info-grid">
+                <div><strong>1. Provisional Merit List</strong><span>Check your provisional merit status and verify the details.</span></div>
+                <div><strong>2. Grievance / Correction</strong><span>Follow the official process if any eligible correction or objection window is announced.</span></div>
+                <div><strong>3. Final Merit List</strong><span>The final merit list is published after the applicable processing of grievances.</span></div>
+            </div>
+            <span class="tag">Merit List</span>
+            <a class="notice-link" href="https://fe2026.mahacet.org/StaticPages/HomePage" target="_blank" rel="noopener">Check Merit List / Official Updates ↗</a>
+        </div>
     </div>
-
 
     <div class="notification-card">
-
-        <h3>Merit List</h3>
-
-        <p>
-            Check updates related to provisional
-            and final merit lists.
-        </p>
-
-        <span class="tag">
-            Merit List
-        </span>
-
+        <div class="notice-icon">🎯</div>
+        <div>
+            <h3>CAP Round Allotment</h3>
+            <p>
+                Candidates participate in CAP rounds by submitting the applicable option form/preferences.
+                Seat allotment is published round-wise. The official engineering CAP portal provides allotment-status
+                pages, cut-off lists and institute-wise allotment information.
+            </p>
+            <div class="round-grid">
+                <div><strong>CAP Round I</strong><span>Option form → allotment → seat acceptance/reporting as per the official schedule.</span></div>
+                <div><strong>CAP Round II</strong><span>Eligible candidates can participate according to the published rules and schedule.</span></div>
+                <div><strong>CAP Round III</strong><span>Check the round-specific allotment, cut-offs and seat-acceptance instructions.</span></div>
+                <div><strong>CAP Round IV</strong><span>Check final-round allotment, cut-offs and subsequent vacancy/ACAP notices.</span></div>
+            </div>
+            <span class="tag">CAP Round Allotment</span>
+            <a class="notice-link" href="https://fe2026.mahacet.org/StaticPages/frmNews" target="_blank" rel="noopener">Check Allotment & CAP Notices ↗</a>
+        </div>
     </div>
-
 
     <div class="notification-card">
-
-        <h3>CAP Round Allotment</h3>
-
-        <p>
-            Stay informed about seat allotment
-            and CAP round updates.
-        </p>
-
-        <span class="tag">
-            CAP Round
-        </span>
-
+        <div class="notice-icon">📌</div>
+        <div>
+            <h3>What to Check After Allotment</h3>
+            <p>When an allotment is published, carefully check the official instructions for that round before taking any action.</p>
+            <ul class="notice-list">
+                <li>Allotted institute and course/branch</li>
+                <li>Category and seat type shown in the allotment</li>
+                <li>Round number and allotment status</li>
+                <li>Seat acceptance / self-verification instructions</li>
+                <li>Fee-payment and institute-reporting requirements, if applicable</li>
+                <li>Next-round eligibility and option-form instructions, if applicable</li>
+            </ul>
+            <span class="tag">Candidate Checklist</span>
+        </div>
     </div>
-
 
     <div class="notification-card">
-
-        <h3>Vacancy Updates</h3>
-
-        <p>
-            Important information about available
-            seats after CAP rounds.
-        </p>
-
-        <span class="tag">
-            Vacancy
-        </span>
-
+        <div class="notice-icon">📊</div>
+        <div>
+            <h3>Cut-offs & Institute-wise Allotment</h3>
+            <p>
+                The official B.E./B.Tech CAP portal provides CAP-round cut-off information, institute-wise allotment
+                information, merit-list status, vacancy information and other admission resources. MahaCollege uses
+                CAP cut-off information to support its college-search and prediction features.
+            </p>
+            <div class="official-links">
+                <a href="https://fe2026.mahacet.org/StaticPages/frmNews" target="_blank" rel="noopener">CAP News & Notices ↗</a>
+                <a href="https://fe2026.mahacet.org/StaticPages/frmInstituteWiseAllotmentList" target="_blank" rel="noopener">Institute-wise Allotment ↗</a>
+                <a href="https://cetcell.mahacet.org/cap-_2026-27/" target="_blank" rel="noopener">CET Cell CAP 2026-27 ↗</a>
+            </div>
+            <span class="tag">Official Information</span>
+        </div>
     </div>
 
+    <div class="status-box">
+        <strong>Current 2026-27 status:</strong>
+        The official B.E./B.Tech CAP portal currently states that the admission process for Academic Year 2026-27 is closed.
+        Always verify the latest dates and notices on the official CET Cell portal before acting on admission information.
+    </div>
 
-    <p style="margin-top:25px;">
-
-        <strong>Note:</strong>
-        This prototype currently shows sample notifications.
-        Actual updates should be connected to official CET Cell information.
-
+    <p class="notification-note">
+        <strong>Important:</strong> MahaCollege provides an informational interface. Admission dates, merit lists,
+        allotments, cut-offs, fees and eligibility are controlled by the Maharashtra State CET Cell and can change.
+        Use the official CET Cell/CAP portal for final confirmation.
     </p>
 
 </div>

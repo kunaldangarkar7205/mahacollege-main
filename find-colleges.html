@@ -24,9 +24,13 @@
 <div class="college-container" id="collegeContainer"></div>
 <div class="source-note">Cutoff figures shown here are official CAP Round IV 2026-27 values where available. A blank cutoff means the selected college/branch data was not loaded into this local dataset; it is not a zero cutoff.</div>
 <script src="college-data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="auth.js"></script><script src="account-data.js"></script>
 <script>
 const branches=[...new Set(COLLEGES.flatMap(c=>c.branches))].sort();
 document.getElementById('branch').innerHTML='<option value="all">All Branches</option>'+branches.map(b=>`<option>${b}</option>`).join('');
+let favoriteIds=new Set();
+async function loadFavorites(){try{favoriteIds=new Set(await MahaAccount.getFavorites())}catch(e){console.error(e);}}
+async function toggleFavorite(id){try{const saved=await MahaAccount.toggleFavorite(id); if(saved){favoriteIds.add(String(id));alert('College saved to My Account.')}else{favoriteIds.delete(String(id));alert('Removed from favorites.')}renderColleges();}catch(e){alert('Unable to update favorite: '+e.message);}}
 function renderColleges(){
  const q=document.getElementById('search').value.toLowerCase(), r=document.getElementById('region').value, b=document.getElementById('branch').value, cat=document.getElementById('category').value;
  const list=COLLEGES.filter(c=>c.name.toLowerCase().includes(q)||c.shortName.toLowerCase().includes(q))
@@ -35,10 +39,9 @@ function renderColleges(){
  document.getElementById('collegeContainer').innerHTML=list.map(c=>{
    const vals=c.cutoffs.filter(x=>x[0]===b||b==='all').filter(x=>cat==='all'||x[1].startsWith(cat)).map(x=>x[3]).filter(v=>typeof v==='number');
    const best=vals.length?Math.max(...vals).toFixed(2):'—';
-   return `<div class="college-card"><h3>${c.name}</h3><p>📍 ${c.city} · ${c.district}</p><p>🏛️ ${c.status}</p><p>🎓 ${c.branches.slice(0,5).map(x=>`<span class="badge">${x}</span>`).join('')} ${c.branches.length>5?`<span class="badge">+${c.branches.length-5} more</span>`:''}</p><p><strong>Matching cutoff:</strong> ${best}${best!=='—'?' percentile':''}</p><a href="college-details.html?id=${encodeURIComponent(c.id)}" class="card-btn">View Details</a></div>`;
+   return `<div class="college-card"><h3>${c.name}</h3><p>📍 ${c.city} · ${c.district}</p><p>🏛️ ${c.status}</p><p>🎓 ${c.branches.slice(0,5).map(x=>`<span class="badge">${x}</span>`).join('')} ${c.branches.length>5?`<span class="badge">+${c.branches.length-5} more</span>`:''}</p><p><strong>Matching cutoff:</strong> ${best}${best!=='—'?' percentile':''}</p><a href="college-details.html?id=${encodeURIComponent(c.id)}" class="card-btn">View Details</a> <button class="card-btn" style="border:0;cursor:pointer" onclick="toggleFavorite('${String(c.id).replace(/'/g,"\\'")}')">❤️ Save</button></div>`;
  }).join('') || '<p style="grid-column:1/-1;text-align:center">No colleges match the selected filters.</p>';
 }
-renderColleges();
+document.addEventListener('DOMContentLoaded',async()=>{await loadFavorites();renderColleges();});
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="auth.js"></script>
 </body></html>
