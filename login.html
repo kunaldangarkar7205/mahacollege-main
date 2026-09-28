@@ -27,10 +27,27 @@
         <button id="loginButton" class="auth-button" type="submit">Login</button>
     </form>
     <div id="message" class="auth-message"></div>
+    <div class="auth-link"><a href="forgot-password.html">Forgot Password?</a></div>
     <div class="auth-link">New student? <a href="signup.html">Create an account</a></div>
 </div></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script src="auth.js"></script>
+<script>
+    const loginParams = new URLSearchParams(window.location.search);
+    if (loginParams.get('password_reset') === '1') {
+        const message = document.getElementById('message');
+        if (message) {
+            message.textContent = 'Password changed successfully. Please log in with your new password.';
+            message.className = 'auth-message success';
+        }
+    } else if (loginParams.get('registered') === '1') {
+        const message = document.getElementById('message');
+        if (message) {
+            message.textContent = 'Account created successfully. Please log in to continue.';
+            message.className = 'auth-message success';
+        }
+    }
+</script>
 </body>
 </html>
