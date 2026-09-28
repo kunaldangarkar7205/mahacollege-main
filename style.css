@@ -566,3 +566,647 @@ footer p {
     }
 
 }
+/* ================= DARK MODE ================= */
+body.dark-mode{background:#0f172a;color:#e5e7eb}body.dark-mode nav{background:#111827;box-shadow:0 2px 12px rgba(0,0,0,.35)}body.dark-mode .logo,body.dark-mode .menu a{color:#e5e7eb}body.dark-mode .menu a:hover{color:#60a5fa}body.dark-mode .important-section,body.dark-mode .features{background:#111827}body.dark-mode .feature-card,body.dark-mode .important-card,body.dark-mode .account-card,body.dark-mode .search-box,body.dark-mode .college-card,body.dark-mode .predictor-page,body.dark-mode table{background:#1e293b;color:#e5e7eb;border-color:#334155}body.dark-mode .hero{background:linear-gradient(135deg,#172554,#0f172a)}body.dark-mode .hero p,body.dark-mode .section-title p,body.dark-mode .important-card p{color:#cbd5e1}body.dark-mode input,body.dark-mode select{background:#0f172a;color:#e5e7eb;border-color:#475569}
+
+
+/* =========================================================
+   MAHACOLLEGE GLOBAL THEME SYSTEM
+   Light/Dark mode applies to the complete website.
+   ========================================================= */
+
+:root {
+    --mc-bg: #f5f7fb;
+    --mc-surface: #ffffff;
+    --mc-surface-2: #f8fafc;
+    --mc-surface-3: #eef6ff;
+    --mc-text: #172554;
+    --mc-text-2: #475569;
+    --mc-muted: #666;
+    --mc-border: #e5e7eb;
+    --mc-primary: #2563eb;
+    --mc-primary-soft: #eef6ff;
+    --mc-input: #ffffff;
+    --mc-shadow: rgba(0,0,0,.08);
+}
+
+body {
+    background: var(--mc-bg);
+    color: var(--mc-text);
+    transition: background-color .25s ease, color .25s ease;
+}
+
+nav,
+.important-section,
+.features,
+.explore-section,
+.why-section,
+.feature-card,
+.important-card,
+.city-card,
+.journey-icon,
+.account-card,
+.search-box,
+.college-card,
+.predictor-page,
+.result-card,
+.auth-box,
+.category-box,
+.detail-panel,
+.details-section,
+.documents-box,
+.document-item,
+.notification-card,
+.comparison,
+.table-container,
+.table-wrap,
+.cutoff-table,
+.profile-item,
+.hero-card,
+.source-box,
+.notice,
+.intro,
+.filters,
+.tools,
+.location-help {
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+/* ---------- DARK THEME: GLOBAL ---------- */
+body.dark-mode {
+    --mc-bg: #0b1120;
+    --mc-surface: #111827;
+    --mc-surface-2: #1e293b;
+    --mc-surface-3: #172554;
+    --mc-text: #f8fafc;
+    --mc-text-2: #cbd5e1;
+    --mc-muted: #94a3b8;
+    --mc-border: #334155;
+    --mc-primary: #60a5fa;
+    --mc-primary-soft: #172554;
+    --mc-input: #0f172a;
+    --mc-shadow: rgba(0,0,0,.35);
+
+    background: var(--mc-bg) !important;
+    color: var(--mc-text) !important;
+}
+
+/* Every major section */
+body.dark-mode nav,
+body.dark-mode .important-section,
+body.dark-mode .explore-section,
+body.dark-mode .why-section,
+body.dark-mode .features,
+body.dark-mode .journey-section,
+body.dark-mode .auth-page,
+body.dark-mode .account-page,
+body.dark-mode .compare-page,
+body.dark-mode .cutoff-page,
+body.dark-mode .details-page,
+body.dark-mode .documents-page,
+body.dark-mode .notification-page,
+body.dark-mode .predictor-page {
+    background: var(--mc-bg) !important;
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode .hero {
+    background: linear-gradient(135deg, #172554, #0b1120) !important;
+}
+
+body.dark-mode .logo,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode label,
+body.dark-mode strong,
+body.dark-mode .menu a,
+body.dark-mode .important-card,
+body.dark-mode .city-card,
+body.dark-mode .journey-step,
+body.dark-mode .section-title,
+body.dark-mode .hero-text,
+body.dark-mode .feature-card {
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode p,
+body.dark-mode li,
+body.dark-mode .hero p,
+body.dark-mode .section-title p,
+body.dark-mode .important-card p,
+body.dark-mode .feature-card p,
+body.dark-mode .why-card p,
+body.dark-mode .journey-step p,
+body.dark-mode .muted,
+body.dark-mode .small,
+body.dark-mode .note,
+body.dark-mode .source-note,
+body.dark-mode .location-help {
+    color: var(--mc-text-2) !important;
+}
+
+/* Cards / boxes / panels */
+body.dark-mode .feature-card,
+body.dark-mode .important-card,
+body.dark-mode .city-card,
+body.dark-mode .why-card,
+body.dark-mode .account-card,
+body.dark-mode .search-box,
+body.dark-mode .college-card,
+body.dark-mode .hero-card,
+body.dark-mode .result-card,
+body.dark-mode .auth-box,
+body.dark-mode .category-box,
+body.dark-mode .detail-panel,
+body.dark-mode .details-section,
+body.dark-mode .documents-box,
+body.dark-mode .document-item,
+body.dark-mode .notification-card,
+body.dark-mode .comparison,
+body.dark-mode .table-container,
+body.dark-mode .table-wrap,
+body.dark-mode .profile-item,
+body.dark-mode .source-box,
+body.dark-mode .notice,
+body.dark-mode .intro,
+body.dark-mode .filters,
+body.dark-mode .tools,
+body.dark-mode .location-help {
+    background: var(--mc-surface) !important;
+    color: var(--mc-text) !important;
+    border-color: var(--mc-border) !important;
+    box-shadow: 0 8px 25px var(--mc-shadow);
+}
+
+body.dark-mode .city-card,
+body.dark-mode .why-card {
+    background: var(--mc-surface-2) !important;
+}
+
+body.dark-mode .journey-icon,
+body.dark-mode .hero-image {
+    background: var(--mc-surface-2) !important;
+    color: var(--mc-text) !important;
+}
+
+/* Inputs, selects and textareas */
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background: var(--mc-input) !important;
+    color: var(--mc-text) !important;
+    border-color: #475569 !important;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #94a3b8 !important;
+}
+
+body.dark-mode option {
+    background: #0f172a;
+    color: #f8fafc;
+}
+
+/* Tables */
+body.dark-mode table,
+body.dark-mode th,
+body.dark-mode td {
+    background: var(--mc-surface) !important;
+    color: var(--mc-text) !important;
+    border-color: var(--mc-border) !important;
+}
+
+body.dark-mode th {
+    background: #172554 !important;
+}
+
+body.dark-mode tr:nth-child(even) td {
+    background: #162033 !important;
+}
+
+/* Links/buttons */
+body.dark-mode a:not(.login-btn) {
+    color: var(--mc-primary);
+}
+
+body.dark-mode .menu a:hover,
+body.dark-mode .feature-card a:hover,
+body.dark-mode .footer-links a:hover {
+    color: #93c5fd !important;
+}
+
+body.dark-mode button,
+body.dark-mode .search-btn,
+body.dark-mode .predict-btn,
+body.dark-mode .add-btn,
+body.dark-mode .card-btn,
+body.dark-mode .auth-button {
+    color: #fff;
+}
+
+body.dark-mode .login-btn {
+    color: #172554 !important;
+}
+
+body.dark-mode .badge,
+body.dark-mode .tag,
+body.dark-mode .match-badge {
+    border-color: var(--mc-border);
+}
+
+/* Footer remains intentionally dark in both themes */
+body.dark-mode footer {
+    background: #020617 !important;
+    color: #f8fafc !important;
+}
+
+/* Theme toggle */
+#theme-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0 !important;
+    border-radius: 50%;
+    font-size: 19px !important;
+    cursor: pointer;
+    background: var(--mc-surface-2);
+    color: var(--mc-text) !important;
+    border: 1px solid var(--mc-border);
+    transition: .2s ease;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.06);
+    background: var(--mc-primary-soft);
+}
+
+/* ---------- INLINE-STYLE OVERRIDES ---------- */
+body.dark-mode [style*="background:#fff"],
+body.dark-mode [style*="background: #fff"],
+body.dark-mode [style*="background:white"],
+body.dark-mode [style*="background: white"],
+body.dark-mode [style*="background:#ffffff"],
+body.dark-mode [style*="background: #ffffff"] {
+    background: var(--mc-surface) !important;
+}
+
+body.dark-mode [style*="color:#172554"],
+body.dark-mode [style*="color: #172554"],
+body.dark-mode [style*="color:#333"],
+body.dark-mode [style*="color: #333"],
+body.dark-mode [style*="color:#555"],
+body.dark-mode [style*="color: #555"] {
+    color: var(--mc-text-2) !important;
+}
+
+/* =========================================================
+   FINAL THEME CONTRAST FIX
+   Makes page-specific/inline styles readable in both themes.
+   ========================================================= */
+
+/* Dark mode: page-specific sections */
+body.dark-mode .page-header,
+body.dark-mode .source-box,
+body.dark-mode .round-note,
+body.dark-mode .notice,
+body.dark-mode .stat,
+body.dark-mode .label,
+body.dark-mode .empty {
+    background: var(--mc-surface-2) !important;
+    color: var(--mc-text) !important;
+    border-color: var(--mc-border) !important;
+}
+
+body.dark-mode .page-header h1,
+body.dark-mode .page-header p,
+body.dark-mode .source-note,
+body.dark-mode .source,
+body.dark-mode .count,
+body.dark-mode .round-title,
+body.dark-mode .cutoff-head p,
+body.dark-mode .meta,
+body.dark-mode .direct-details strong,
+body.dark-mode .direct-details span,
+body.dark-mode .profile-item p,
+body.dark-mode .item p,
+body.dark-mode .small,
+body.dark-mode .muted {
+    color: var(--mc-text-2) !important;
+}
+
+/* College branch/category pills: the important fix visible in the screenshot */
+body.dark-mode .badge,
+body.dark-mode .tag,
+body.dark-mode .match-badge,
+body.dark-mode .badges span {
+    background: #334155 !important;
+    color: #f8fafc !important;
+    border: 1px solid #475569 !important;
+    text-shadow: none !important;
+}
+
+/* Search/filter area */
+body.dark-mode .filters input,
+body.dark-mode .filters select,
+body.dark-mode .tools input,
+body.dark-mode .college-select select,
+body.dark-mode .category-box select,
+body.dark-mode .profile-form input {
+    background: var(--mc-input) !important;
+    color: var(--mc-text) !important;
+    border-color: #475569 !important;
+}
+
+body.dark-mode .filters input::placeholder,
+body.dark-mode .tools input::placeholder,
+body.dark-mode .profile-form input::placeholder {
+    color: #94a3b8 !important;
+}
+
+/* College details/predictor content */
+body.dark-mode .details-page,
+body.dark-mode .predictor-page,
+body.dark-mode .compare-page,
+body.dark-mode .cutoff-page,
+body.dark-mode .documents-page,
+body.dark-mode .notification-page,
+body.dark-mode .auth-page,
+body.dark-mode .account-page {
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode .result-card {
+    background: #1e293b !important;
+    color: var(--mc-text) !important;
+    border-left-color: #60a5fa !important;
+}
+
+body.dark-mode .result-card h3,
+body.dark-mode .predictor-page h1,
+body.dark-mode .form-group label,
+body.dark-mode .count,
+body.dark-mode .meta {
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode .round-note,
+body.dark-mode .selected-round {
+    background: #172554 !important;
+    color: #dbeafe !important;
+}
+
+body.dark-mode .cutoff-table,
+body.dark-mode .cutoff-table th,
+body.dark-mode .cutoff-table td {
+    background: var(--mc-surface) !important;
+    color: var(--mc-text) !important;
+    border-color: var(--mc-border) !important;
+}
+
+body.dark-mode .cutoff-table th {
+    background: #172554 !important;
+}
+
+body.dark-mode .comparison .label {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+}
+
+/* Dashboard/history/favourites */
+body.dark-mode .item,
+body.dark-mode .item-actions button,
+body.dark-mode .item-actions a {
+    background: var(--mc-surface-2) !important;
+    color: var(--mc-text) !important;
+    border-color: var(--mc-border) !important;
+}
+
+body.dark-mode .danger {
+    background: #7f1d1d !important;
+    color: #fecaca !important;
+    border-color: #991b1b !important;
+}
+
+/* Notifications/documents */
+body.dark-mode .notification-item,
+body.dark-mode .document-card,
+body.dark-mode .document-item,
+body.dark-mode .notification-card {
+    background: var(--mc-surface) !important;
+    color: var(--mc-text) !important;
+    border-color: var(--mc-border) !important;
+}
+
+/* Links inside light-colored inline boxes */
+body.dark-mode .source-box a,
+body.dark-mode .round-note a,
+body.dark-mode .links a {
+    color: #93c5fd !important;
+}
+
+/* Override common inline light backgrounds/colors used by individual pages. */
+body.dark-mode [style*="background:#eef2ff"],
+body.dark-mode [style*="background: #eef2ff"],
+body.dark-mode [style*="background:#eef6ff"],
+body.dark-mode [style*="background: #eef6ff"],
+body.dark-mode [style*="background:#f8fafc"],
+body.dark-mode [style*="background: #f8fafc"],
+body.dark-mode [style*="background:#fafafa"],
+body.dark-mode [style*="background: #fafafa"] {
+    background: var(--mc-surface-2) !important;
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode [style*="color:#666"],
+body.dark-mode [style*="color: #666"],
+body.dark-mode [style*="color:#64748b"],
+body.dark-mode [style*="color: #64748b"],
+body.dark-mode [style*="color:#475569"],
+body.dark-mode [style*="color: #475569"] {
+    color: var(--mc-text-2) !important;
+}
+
+/* Keep all form controls readable in dark mode, including controls defined inline. */
+body.dark-mode button,
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    -webkit-text-fill-color: currentColor;
+}
+
+/* Light theme contrast for pills and normal text */
+body:not(.dark-mode) .badge,
+body:not(.dark-mode) .tag,
+body:not(.dark-mode) .match-badge,
+body:not(.dark-mode) .badges span {
+    color: #172554;
+}
+
+/* =========================================================
+   DOCUMENTS PAGE THEME FIX
+   Fixes the white category-selection panel visible in dark mode.
+   ========================================================= */
+.category-select {
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.category-select select {
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+
+body.dark-mode .category-select {
+    background: var(--mc-surface) !important;
+    color: var(--mc-text) !important;
+    border: 1px solid var(--mc-border) !important;
+    box-shadow: 0 8px 25px var(--mc-shadow) !important;
+}
+
+body.dark-mode .category-select label,
+body.dark-mode .category-select strong {
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode .category-select select {
+    background: var(--mc-input) !important;
+    color: var(--mc-text) !important;
+    border: 1px solid #475569 !important;
+}
+
+body.dark-mode .category-select select option {
+    background: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+body.dark-mode .documents-box h3 {
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode .document-item {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+}
+
+/* Light theme keeps the document page clean and readable. */
+body:not(.dark-mode) .category-select {
+    background: #ffffff !important;
+    color: #172554 !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+body:not(.dark-mode) .category-select select {
+    background: #ffffff !important;
+    color: #172554 !important;
+    border-color: #cbd5e1 !important;
+}
+
+body:not(.dark-mode) .document-item {
+    background: #f5f7fb !important;
+    color: #172554 !important;
+}
+
+/* =========================================================
+   COMPARE PAGE - COMPLETE DARK/LIGHT THEME FIX
+   ========================================================= */
+body.dark-mode .compare-page .college-select,
+body.dark-mode .compare-page .category-box {
+    background: var(--mc-surface) !important;
+    color: var(--mc-text) !important;
+    border: 1px solid var(--mc-border) !important;
+    box-shadow: 0 8px 24px var(--mc-shadow) !important;
+}
+
+body.dark-mode .compare-page .college-select select,
+body.dark-mode .compare-page .category-box select {
+    background: var(--mc-input) !important;
+    color: var(--mc-text) !important;
+    border: 1px solid #475569 !important;
+}
+
+body.dark-mode .compare-page .college-select select option,
+body.dark-mode .compare-page .category-box select option {
+    background: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+body.dark-mode .compare-page .add-btn {
+    background: #2563eb !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .compare-page .clear-btn {
+    background: #334155 !important;
+    color: #f8fafc !important;
+    border: 1px solid #475569 !important;
+}
+
+body.dark-mode .compare-page .small {
+    color: var(--mc-text-2) !important;
+}
+
+body.dark-mode .compare-page .comparison {
+    color: var(--mc-text) !important;
+}
+
+body.dark-mode .compare-page .comparison table,
+body.dark-mode .compare-page .comparison tbody,
+body.dark-mode .compare-page .comparison tr,
+body.dark-mode .compare-page .comparison td {
+    background: var(--mc-surface) !important;
+    color: var(--mc-text) !important;
+    border-color: var(--mc-border) !important;
+}
+
+body.dark-mode .compare-page .comparison th {
+    background: #172554 !important;
+    color: #ffffff !important;
+    border-color: #334155 !important;
+}
+
+body.dark-mode .compare-page .comparison .label {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    font-weight: 700 !important;
+}
+
+body.dark-mode .compare-page .comparison a {
+    color: #93c5fd !important;
+}
+
+/* Light mode remains explicit so this page cannot inherit a dark value. */
+body:not(.dark-mode) .compare-page .college-select,
+body:not(.dark-mode) .compare-page .category-box {
+    background: #ffffff !important;
+    color: #172554 !important;
+    border: 1px solid #e5e7eb !important;
+}
+
+body:not(.dark-mode) .compare-page .college-select select,
+body:not(.dark-mode) .compare-page .category-box select {
+    background: #ffffff !important;
+    color: #172554 !important;
+    border-color: #cbd5e1 !important;
+}
+
+body:not(.dark-mode) .compare-page .comparison table {
+    background: #ffffff !important;
+    color: #172554 !important;
+}
+
+body:not(.dark-mode) .compare-page .comparison td {
+    background: #ffffff !important;
+    color: #172554 !important;
+    border-color: #ddd !important;
+}
+
+body:not(.dark-mode) .compare-page .comparison .label {
+    background: #f7f7f7 !important;
+    color: #172554 !important;
+}

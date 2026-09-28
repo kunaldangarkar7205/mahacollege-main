@@ -195,7 +195,37 @@ async function logoutUser() {
     window.location.href = 'login.html';
 }
 
+function applyMahaCollegeTheme() {
+    const isDark = localStorage.getItem('mahacollege_theme') === 'dark';
+    document.body.classList.toggle('dark-mode', isDark);
+    const theme = document.getElementById('theme-toggle');
+    if (theme) {
+        theme.textContent = isDark ? '☀️' : '🌙';
+        theme.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+        theme.title = isDark ? 'Switch to light theme' : 'Switch to dark theme';
+    }
+}
+
+function addThemeToggle() {
+    const menu = document.querySelector('nav .menu');
+    if (!menu || document.getElementById('theme-toggle')) return;
+
+    const theme = document.createElement('a');
+    theme.id = 'theme-toggle';
+    theme.href = '#';
+    theme.onclick = (event) => {
+        event.preventDefault();
+        const next = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+        localStorage.setItem('mahacollege_theme', next);
+        applyMahaCollegeTheme();
+    };
+    menu.appendChild(theme);
+    applyMahaCollegeTheme();
+}
+
 async function updateAuthUI() {
+    addThemeToggle();
+
     if (!window.supabaseClient) return;
     const { data: { user } } = await window.supabaseClient.auth.getUser();
     const loginLinks = document.querySelectorAll('.login-btn');
@@ -214,11 +244,24 @@ async function updateAuthUI() {
             link.onclick = null;
         }
     });
+
+    const menu = document.querySelector('nav .menu');
+    if (menu) {
+        if (user && !document.getElementById('account-link')) {
+            const account = document.createElement('a');
+            account.id = 'account-link';
+            account.href = 'dashboard.html';
+            account.textContent = 'My Account';
+            menu.insertBefore(account, menu.querySelector('.login-btn') || null);
+        }
+        addThemeToggle();
+    }
 }
 
 // Login is required for every website page except the authentication pages.
 // The main website (index.html and all feature pages) cannot be used without a valid session.
 document.addEventListener('DOMContentLoaded', async () => {
+    applyMahaCollegeTheme();
     const page = window.location.pathname.split('/').pop().toLowerCase();
     if (page !== 'login.html' && page !== 'signup.html') {
         await requireLogin();
